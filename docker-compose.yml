@@ -1,0 +1,11 @@
+version: "3.8"
+
+services:
+  master:
+    build: .
+    command: ./gen-ssh.sh
+    container_name: master
+    ports:
+      - "2222:22"
+      - "12975"
+      - "32976"
