@@ -5,8 +5,6 @@ services:
     build: .
     command: ./services.sh
     container_name: master
-    ports:
-      - "22"
     volumes:
       - "hamachi:/var/lib/logmein-hamachi"
     privileged: true
