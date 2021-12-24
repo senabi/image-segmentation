@@ -3,9 +3,14 @@ version: "3.8"
 services:
   master:
     build: .
-    command: ./gen-ssh.sh
+    command: ./services.sh
     container_name: master
     ports:
-      - "2222:22"
-      - "12975"
-      - "32976"
+      - "22"
+    volumes:
+      - "hamachi:/var/lib/logmein-hamachi"
+    privileged: true
+    network_mode: "host"
+
+volumes:
+  hamachi: null

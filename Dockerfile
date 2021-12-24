@@ -36,7 +36,7 @@ RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/ss
 RUN sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 without-password/' /etc/ssh/sshd_config
 RUN sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 yes/' /etc/ssh/sshd_config
 
-COPY gen-ssh.sh ${HOME}
+COPY services.sh ${HOME}
 RUN chmod +x ${HOME}/*.sh
 WORKDIR ${HOME}
 EXPOSE 22
