@@ -23,21 +23,23 @@ RUN mkdir /var/run/sshd
 RUN echo "root:${PASS}" | chpasswd \
     && echo "export TERM=vt100" >> ${HOME}/.bashrc
 
-COPY parallel-rank ${HOME}/parallel-rank-with-mpi-x
+COPY parallel-rank ${HOME}/parallel-rank
+COPY start-main.sh ${HOME}/start-main.sh
+COPY start-worker.sh ${HOME}/start-worker.sh
+COPY add-node.sh ${HOME}/add-node.sh
 
-RUN mkdir -p ${HOME}/parallel-rank-with-mpi-x/build \
-    && cd ${HOME}/parallel-rank-with-mpi-x/build \
+RUN mkdir -p ${HOME}/parallel-rank/build \
+    && cd ${HOME}/parallel-rank/build \
     && cmake .. \
     && make \
-    && cp ${HOME}/parallel-rank-with-mpi-x/build/parallel-rank ${HOME}
+    && cp ${HOME}/parallel-rank/build/parallel-rank /usr/local/bin/parallel-rank
 
 RUN echo "    CheckHostIP no\n    StrictHostKeyChecking no" >> /etc/ssh/ssh_config
 RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 RUN sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 without-password/' /etc/ssh/sshd_config
 RUN sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 yes/' /etc/ssh/sshd_config
-
-COPY services.sh ${HOME}
 RUN chmod +x ${HOME}/*.sh
+
 WORKDIR ${HOME}
 EXPOSE 22
-CMD ["/usr/sbin/sshd", "-D"]
+# CMD ["/usr/sbin/sshd", "-D"]
