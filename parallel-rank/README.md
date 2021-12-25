@@ -15,6 +15,11 @@ cd build && cmake .. && make
 
 # Run
 
+Parallel rank
 ```
 mpirun -np <N> ./build/parallel-rank --mca opal_warn_on_missing_libcuda 0
+```
+Image segmentation
+```
+mpirun -np <N> ./main <NUM_CLUSTERS> <IMAGE_PATH> <NUM_ITERATIONS>
 ```
