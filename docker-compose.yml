@@ -1,24 +1,18 @@
 version: "3.8"
 
 services:
-  main:
-    build: .
-    command: ./start-main.sh ${NET_NAME} ${NET_PASS}
-    container_name: main
-    privileged: true
-    network_mode: "host"
-    volumes:
-      - "hamachi:/var/lib/logmein-hamachi"
-
   worker:
     build: .
-    command: ./start-worker.sh
+    command: ./init.sh
     container_name: worker
     privileged: true
     network_mode: "host"
     volumes:
-      - "hamachi-worker:/var/lib/logmein-hamachi"
+      - "worker:/var/lib/logmein-hamachi"
+    environment:
+      - NET_NAME=${NET_NAME}
+      - NET_PASS=${NET_PASS}
+      - NET_MODE=${NET_MODE}
 
 volumes:
-  hamachi: null
-  hamachi-worker: null
+  worker: null
