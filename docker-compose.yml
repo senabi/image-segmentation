@@ -2,17 +2,24 @@ version: "3.8"
 
 services:
   worker:
-    build: .
+    build:
+      context: .
+      args:
+        USER_PASS: ${USER_PASS}
     command: ./init.sh
     container_name: worker
     privileged: true
     network_mode: "host"
     volumes:
       - "worker:/var/lib/logmein-hamachi"
+      - "./images:/root/images"
+    env_file:
+      - .env
     environment:
       - NET_NAME=${NET_NAME}
       - NET_PASS=${NET_PASS}
       - NET_MODE=${NET_MODE}
+      - USER_PASS=${USER_PASS}
 
 volumes:
   worker: null

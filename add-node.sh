@@ -14,3 +14,6 @@ done
 msg="Host $host\nHostName $host_name\nPort $port\nUser $user\n"
 
 echo -e $msg >> $HOME/.ssh/config
+
+SSHPASS='${USER_PASS}' sshpass -e ssh-copy-id $host
+echo $host >> hostfile
