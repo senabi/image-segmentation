@@ -17,4 +17,4 @@ echo -e $msg >> $HOME/.ssh/config
 echo $USER_PASS > $HOME/.pass
 chmod 0400 $HOME/.pass
 sshpass -f $HOME/.pass ssh-copy-id $host
-echo $host >> hostfile
+echo "$host slots=1 max_slots=1" >> hostfile

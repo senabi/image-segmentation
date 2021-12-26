@@ -42,4 +42,4 @@ elif [[ $NET_MODE == "worker" ]];
     done
 fi
 
-echo "localhost" > $HOME/hostfile
+echo "localhost slots=1 max_slots=1" > $HOME/hostfile
