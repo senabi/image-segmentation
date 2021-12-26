@@ -26,7 +26,6 @@ docker exec -it worker sh -c "./init-vpn.sh"
 ```sh
 # Main container
 ./add-node.sh -H <host> -HN <host-name> -P <port> -U <user>
-ssh-copy-id <host>
 ```
 
 ## Image segmentation:
