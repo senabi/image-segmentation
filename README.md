@@ -1,5 +1,9 @@
 # image-segmentation
 
+- Ivan Buendia Gutierrez
+- Jhoel Salomon Tapara Quispe
+- Diego Espirilla Portocarrero
+
 Image segmentation implemented using MPI, K-means algorithm in a network
 
 ## Set up container
