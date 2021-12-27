@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Image Segmentation with MPI</title>
+</head>
+
+<body>
+    <form method="POST" action="/upload-single" enctype="multipart/form-data">
+        <div>
+            <label>Upload image</label>
+            <input type="file" name="img-file" required />
+        </div>
+        <div>
+            <input type="submit" value="Upload" />
+        </div>
+    </form>
+
+    <hr>
+
+    <form method="POST" action="/add-node">
+        <div>
+            <label>Add your node to the cluster</label>
+            <br />
+            Host: <input type="text" name="Host" placeholder="node-x" required />
+            <br />
+            Host name: <input type="text" name="HostName" placeholder="00.00.00.00" required />
+            <br />
+            Port: <input type="number" name="Port" placeholder="22" required />
+            <br />
+            User: <input type="text" name="User" placeholder="root" required />
+        </div>
+        <div>
+            <input type="submit" value="Send" />
+        </div>
+    </form>
+    <!-- <hr>
+    <div>
+        <label>Segmented Image</label>
+        <br/>
+        <img height="500px" src="/images/test.jpg">
+    </div> -->
+</body>
+
+</html>

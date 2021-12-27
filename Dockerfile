@@ -10,8 +10,8 @@ RUN apt-get update \
     ca-certificates wget iproute2 iputils-ping net-tools \
     ssh sshpass \
     libopenmpi-dev openmpi-bin libomp-dev libopencv-dev \
-    libjpeg-dev libpng-dev libtiff-dev \
-    vim \
+    libjpeg-dev libpng-dev libtiff-dev ffmpeg \
+    vim nodejs npm \
     --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get autoclean
@@ -35,6 +35,14 @@ ENV CXX g++
 COPY init.sh $HOME/init.sh
 COPY init-vpn.sh $HOME/init-vpn.sh
 COPY add-node.sh $HOME/add-node.sh
+
+COPY server/index.js ${HOME}/server/index.js
+COPY server/public ${HOME}/server/public
+COPY server/package-lock.json ${HOME}/server/package-lock.json
+COPY server/package.json ${HOME}/server/package.json
+
+RUN cd ${HOME}/server \
+    && npm i
 
 COPY mpi/src $HOME/mpi/src
 COPY mpi/CMakeLists.txt $HOME/mpi/CMakeLists.txt
